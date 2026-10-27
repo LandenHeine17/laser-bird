@@ -1,0 +1,54 @@
+/# LASER BIRD
+
+A retro pixel-art flappy shooter. You flap through crystal pillars, blast enemies with your laser, and dash into enemy fire to send it back. All the art, sound effects and chiptune music are generated in code, so there are no asset files.
+
+## Run
+
+```sh
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+.venv/bin/python main.py
+```
+
+## Controls
+
+| Action | Keyboard | Mouse | Gamepad |
+|---|---|---|---|
+| Flap | Space / W / Up | Left click | A |
+| Laser (hold) | J / F / X | Right click | X / RB / RT |
+| Reflect-dash | K / Shift / S / Down | Middle click | B / LB |
+| Pause | P / Esc | | Start |
+| Fullscreen / Mute | F11 / M | | |
+| Change skin (title) | Left / Right | | |
+
+## What's in it
+
+- **Heat gauge**: holding fire builds heat. If it fills, your laser locks for a moment, so fire in bursts.
+- **Reflect-dash**: a quick dash that makes you invulnerable for its duration.
+  - Enemy bolts you dash into fly back at the nearest enemy.
+  - Dash just as a bolt reaches you to get a **PERFECT** reflect, which triggers slow-mo and bonus points.
+  - Dashing through a firing beam scores **PHASED!**
+  - Dashing into small enemies rams and destroys them. Dashing into crystal pillars smashes them.
+- **Crystal pillars** can be shot apart to widen the gap, and they drop shards. **Armored pillars** can't be broken.
+- **Laser gates** pulse across some gaps. Watch for the flicker warning, or shoot out the emitters.
+- **Combo multiplier** up to x8. It grows with kills, pillars passed, reflects, pickups and **CLOSE!** near-misses. Taking a hit or going 3 seconds without scoring resets it.
+- **3 hearts**: touching the ground kills you outright. The ceiling is an electric fence that zaps you back down.
+- **Enemies**:
+  - **Drones** shoot aimed bolts.
+  - **Swoopers** home in on you after a "!" warning.
+  - **Mirror Bats** bounce your lasers back at you. Hit them while the mirror is down, or use a dash or a reflected bolt.
+  - **Turrets** on pillars fire telegraphed beams.
+- **Boss: The Prism Owl** has three phases of attacks: bolt fans, aimed beams, sweeping and crossing beams, spirals, bolt rain and summoned drones.
+  - Hit the prism gem on its chest for critical damage. Reflected bolts deal 4x damage.
+  - Each boss you beat moves you to the next biome: Sunset Hills, Neon City, Crystal Caves, then Deep Space. The game also gets harder.
+- **Power-ups**: Spread Shot, Mega Beam, Chill (no heat), Shard Magnet, Tiny Bird, Shield Bubble, Extra Heart.
+- **Skins** unlock as your lifetime shard total grows: Ruby, Mint, Void, Golden.
+
+Your high score, shard total and chosen skin are saved to `save.json`.
+
+## Smoke test
+
+```sh
+.venv/bin/python main.py --autotest
+```
+
+This runs a bot through the game headless, with no window or sound. It plays through bosses and power-ups, then dies on purpose. It never writes to `save.json`.
